@@ -24,7 +24,8 @@ export class AzureLoginPlugin extends AzureBasePlugin<AzureLoginOptions> {
 
     try {
       const loginService = new AzureLoginService(this.serverless, this.options);
-      const authResult = await loginService.login();
+      const tenantId = process.env.AZURE_TENANT_ID;
+      const authResult = await loginService.login(tenantId ? { domain: tenantId} : undefined);
 
       this.serverless.variables["azureCredentials"] = authResult.credentials;
       // Use environment variable for sub ID or use the first subscription in the list (service principal can

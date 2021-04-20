@@ -66,7 +66,7 @@ describe("Login Plugin", () => {
       "AZURE_CLIENT_ID",
       "AZURE_CLIENT_SECRET",
       "AZURE_TENANT_ID",
-      undefined // would be options
+      {"domain": "AZURE_TENANT_ID"} // would be options
     )
     expect(AzureLoginService.prototype.interactiveLogin).not.toBeCalled();
     expect(JSON.stringify(sls.variables["azureCredentials"])).toEqual(JSON.stringify(credentials));
